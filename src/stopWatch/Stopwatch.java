@@ -25,6 +25,8 @@ public class Stopwatch extends Watch {
 
 	private boolean isRun = true;
 
+	private int log = 0;
+
 	@Override
 	public void run() {
 		menu();
@@ -49,9 +51,17 @@ public class Stopwatch extends Watch {
 		if (select.equals(STOP)) {
 			stop();
 		} else if (select.equals(HOLD)) {
-			hold();
+			if (log == 0) {
+				hold();
+			} else {
+				System.out.println("이미 일시정지 상태 입니다!");
+			}
 		} else if (select.equals(RERUN)) {
-			rerun();
+			if (log == 1) {
+				rerun();
+			} else {
+				System.out.println("타이머가 작동중입니다!");
+			}
 		} else {
 			System.out.println("메뉴를 잘못입력했습니다.");
 		}
@@ -66,10 +76,11 @@ public class Stopwatch extends Watch {
 	private void hold() {
 		System.out.println("일시 정지!!");
 		watchThread.interrupt();
+		log = 1;
 	}
 
 	private void rerun() {
-		// TODO Auto-generated method stub
+		System.out.println("다시 시작!!");
 
 	}
 
