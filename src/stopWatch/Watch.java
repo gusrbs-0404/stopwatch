@@ -21,9 +21,9 @@ public class Watch extends Input {
 	public void run() {
 		istimeRun = true;
 		while (istimeRun) {
-			second++;
+			second ++;
 			printTime();
-
+			System.out.println(second + " a");
 			try {
 				Thread.sleep(1000);
 
@@ -33,4 +33,8 @@ public class Watch extends Input {
 
 		}
 	}
+	
+	public int getSecond() {
+        return second;
+    }
 }
