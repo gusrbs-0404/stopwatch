@@ -6,12 +6,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Input implements Runnable {
-	protected final String STOP = "q";
-	protected final String HOLD = "w";
-	protected final int HOLDNUMBER = 0;
-	protected final String RERUN = "e";
-	protected final int RERUNNUMBER = 1;
-
 	protected StringBuffer buffer = new StringBuffer();
 
 	protected BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));

@@ -1,6 +1,11 @@
 package stopWatch;
 
 public class Stopwatch extends Watch {
+	private final String STOP = "q";
+	private final String HOLD = "w";
+	private final int HOLDNUMBER = 0;
+	private final String RERUN = "e";
+	private final int RERUNNUMBER = 1;
 
 	private void Stopwatch() {
 
