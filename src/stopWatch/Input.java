@@ -13,10 +13,6 @@ public class Input implements Runnable {
 	protected final String RERUN = "e";
 	protected final int RERUNNUMBER = 1;
 
-	protected String qwe = "";
-
-	protected Scanner scan = new Scanner(System.in);
-
 	protected StringBuffer buffer = new StringBuffer();
 
 	protected BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
