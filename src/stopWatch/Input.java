@@ -29,7 +29,7 @@ public class Input implements Runnable {
 	public void run() {
 		while (true) {
 			String userInput = input("메뉴입력: ");
-			if (userInput != null) {
+			if (userInput.equals("")) {
 				Stopwatch.getInstance().inputMenu(userInput);
 			}
 		}
