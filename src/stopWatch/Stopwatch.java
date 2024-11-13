@@ -6,7 +6,9 @@ public class Stopwatch extends Watch {
 
 	private final String STOP = "q";
 	private final String HOLD = "w";
+	private final int HOLDNUMBER = 0;
 	private final String RERUN = "e";
+	private final int RERUNNUMBER = 1;
 
 	private void Stopwatch() {
 
@@ -25,7 +27,7 @@ public class Stopwatch extends Watch {
 
 	private boolean isRun = true;
 
-	private int log = 0;
+	private int log = HOLDNUMBER;
 
 	@Override
 	public void run() {
@@ -42,7 +44,6 @@ public class Stopwatch extends Watch {
 		System.out.println("[q] STOP");
 		System.out.println("[w] HOLD");
 		System.out.println("[e] RERUN");
-
 	}
 
 	private void inputMenu() {
@@ -51,13 +52,13 @@ public class Stopwatch extends Watch {
 		if (select.equals(STOP)) {
 			stop();
 		} else if (select.equals(HOLD)) {
-			if (log == 0) {
+			if (log == HOLDNUMBER) {
 				hold();
 			} else {
 				System.out.println("이미 일시정지 상태 입니다!");
 			}
 		} else if (select.equals(RERUN)) {
-			if (log == 1) {
+			if (log == RERUNNUMBER) {
 				rerun();
 			} else {
 				System.out.println("타이머가 작동중입니다!");
@@ -76,12 +77,15 @@ public class Stopwatch extends Watch {
 	private void hold() {
 		System.out.println("일시 정지!!");
 		watchThread.interrupt();
-		log = 1;
+		log = RERUNNUMBER;
 	}
 
 	private void rerun() {
 		System.out.println("다시 시작!!");
 
+		watchThread = new Thread(watch);
+		watchThread.start();
+		log = HOLDNUMBER;
 	}
 
 	private String input(String msg) {
