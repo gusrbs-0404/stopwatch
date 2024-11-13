@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Scanner;
 
 public class Input implements Runnable {
 	protected final String STOP = "q";
@@ -28,7 +27,7 @@ public class Input implements Runnable {
 				String userInput = input("메뉴입력: ");
 				if (userInput != null) {
 					Stopwatch.getInstance().inputMenu(userInput);
-				}	
+				}
 			} catch (Exception e) {
 				isInputRun = false;
 			}
