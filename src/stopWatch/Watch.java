@@ -3,7 +3,7 @@ package stopWatch;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Watch implements Runnable {
+public class Watch extends Input implements Runnable {
 
 	protected int second;
 

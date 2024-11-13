@@ -12,7 +12,7 @@ public class Stopwatch extends Watch {
 
 	private void Stopwatch() {
 
-	} 
+	}
 
 	private static Stopwatch instance = new Stopwatch();
 
@@ -24,6 +24,9 @@ public class Stopwatch extends Watch {
 
 	private Watch watch = new Watch();
 	private Thread watchThread = new Thread(watch);
+
+	private Input input = new Input();
+	private Thread inputThread = new Thread(input);
 
 	private boolean isRun = true;
 
