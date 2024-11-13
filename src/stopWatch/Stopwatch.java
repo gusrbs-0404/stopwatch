@@ -28,6 +28,7 @@ public class Stopwatch extends Watch {
 	@Override
 	public void run() {
 		menu();
+		watchThread.start();
 		while (isRun) {
 			inputMenu();
 		}
@@ -59,11 +60,12 @@ public class Stopwatch extends Watch {
 	private void stop() {
 		System.out.println("스탑워치 종료합니다!");
 		isRun = false;
+		watchThread.interrupt();
 	}
 
 	private void hold() {
-		// TODO Auto-generated method stub
-
+		System.out.println("일시 정지!!");
+		watchThread.interrupt();
 	}
 
 	private void rerun() {
@@ -73,7 +75,7 @@ public class Stopwatch extends Watch {
 
 	private String input(String msg) {
 		while (true) {
-			System.out.print(msg + " : ");
+			System.out.println(msg + " : ");
 			String input = scan.nextLine();
 
 			if (!input.equals(""))
