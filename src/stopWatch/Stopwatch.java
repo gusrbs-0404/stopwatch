@@ -28,8 +28,10 @@ public class Stopwatch extends Watch {
 	public void run() {
 		menu();
 		watchThread.start();
+		inputThread.start();
 
 		while (isRun) {
+			input();
 			inputThread.start();
 			inputMenu();
 			try {
