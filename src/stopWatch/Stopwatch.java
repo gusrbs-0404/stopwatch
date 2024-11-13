@@ -35,6 +35,7 @@ public class Stopwatch extends Watch {
 	}
 
 	private void menu() {
+		System.out.println("=== 스탑워치 ===");
 		System.out.println("[q] STOP");
 		System.out.println("[w] HOLD");
 		System.out.println("[e] RERUN");
@@ -50,12 +51,14 @@ public class Stopwatch extends Watch {
 			hold();
 		} else if (select.equals(RERUN)) {
 			rerun();
+		} else {
+			System.out.println("메뉴를 잘못입력했습니다.");
 		}
 	}
 
 	private void stop() {
-		// TODO Auto-generated method stub
-
+		System.out.println("스탑워치 종료합니다!");
+		isRun = false;
 	}
 
 	private void hold() {
