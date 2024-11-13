@@ -60,7 +60,7 @@ public class Stopwatch extends Watch {
 		System.out.println("[e] RERUN");
 	}
 
-	private void inputMenu(String Input) {
+	public void inputMenu(String Input) {
 
 		if (Input.equals(STOP)) {
 			stop();
