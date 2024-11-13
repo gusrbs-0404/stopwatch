@@ -4,12 +4,6 @@ import java.util.Scanner;
 
 public class Stopwatch extends Watch {
 
-	private final String STOP = "q";
-	private final String HOLD = "w";
-	private final int HOLDNUMBER = 0;
-	private final String RERUN = "e";
-	private final int RERUNNUMBER = 1;
-
 	private void Stopwatch() {
 
 	}
@@ -19,8 +13,6 @@ public class Stopwatch extends Watch {
 	public static Stopwatch getInstance() {
 		return instance;
 	}
-
-	private Scanner scan = new Scanner(System.in);
 
 	private Watch watch = new Watch();
 	private Thread watchThread = new Thread(watch);
@@ -36,8 +28,16 @@ public class Stopwatch extends Watch {
 	public void run() {
 		menu();
 		watchThread.start();
+
 		while (isRun) {
+			inputThread.start();
 			inputMenu();
+			try {
+				Thread.sleep(1000);
+
+			} catch (InterruptedException e) {
+
+			}
 		}
 
 	}
@@ -50,23 +50,23 @@ public class Stopwatch extends Watch {
 	}
 
 	private void inputMenu() {
-		String select = input("메뉴 입력");
 
-		if (select.equals(STOP)) {
+		if (qwe.equals(STOP)) {
 			stop();
-		} else if (select.equals(HOLD)) {
+		} else if (qwe.equals(HOLD)) {
 			if (log == HOLDNUMBER) {
 				hold();
 			} else {
 				System.out.println("이미 일시정지 상태 입니다!");
 			}
-		} else if (select.equals(RERUN)) {
+		} else if (qwe.equals(RERUN)) {
 			if (log == RERUNNUMBER) {
 				rerun();
 			} else {
 				System.out.println("타이머가 작동중입니다!");
 			}
 		} else {
+
 			System.out.println("메뉴를 잘못입력했습니다.");
 		}
 	}
@@ -75,6 +75,11 @@ public class Stopwatch extends Watch {
 		System.out.println("스탑워치 종료합니다!");
 		isRun = false;
 		watchThread.interrupt();
+		inputThread.interrupt();
+		int minute = second / 60;
+		second = second % 60;
+
+		System.out.printf(">>>> %d초 %d분 소요됨", minute, second);
 	}
 
 	private void hold() {
@@ -91,16 +96,6 @@ public class Stopwatch extends Watch {
 		watchThread.start();
 
 		log = HOLDNUMBER;
-	}
-
-	private String input(String msg) {
-		while (true) {
-			System.out.println(msg + " : ");
-			String input = scan.nextLine();
-
-			if (!input.equals(""))
-				return input;
-		}
 	}
 
 }
