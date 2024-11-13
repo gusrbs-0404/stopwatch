@@ -1,7 +1,5 @@
 package stopWatch;
 
-import java.util.Scanner;
-
 public class Stopwatch extends Watch {
 
 	private void Stopwatch() {
@@ -31,7 +29,6 @@ public class Stopwatch extends Watch {
 		startInputThread();
 
 		while (isRun) {
-			// inputMenu();
 			try {
 				Thread.sleep(1000);
 
@@ -39,7 +36,6 @@ public class Stopwatch extends Watch {
 				Thread.currentThread().interrupt();
 			}
 		}
-
 	}
 
 	private void startWatchThread() {
@@ -77,7 +73,6 @@ public class Stopwatch extends Watch {
 				System.out.println("타이머가 작동중입니다!");
 			}
 		} else {
-
 			System.out.println("메뉴를 잘못입력했습니다.");
 		}
 	}
@@ -86,11 +81,15 @@ public class Stopwatch extends Watch {
 		System.out.println("스탑워치 종료합니다!");
 		isRun = false;
 		watchThread.interrupt();
+		input.isInputRun = false;
+		// 이거하니깐 메뉴입력 안뜸
 		inputThread.interrupt();
-		int minute = second / 60;
-		second = second % 60;
 
-		System.out.printf(">>>> %d초 %d분 소요됨", minute, second);
+		int getSeconds = watch.getSecond();
+		int minute = getSeconds / 60;
+		int second = getSeconds % 60;
+
+		System.out.printf(">>>> %d분 %d초 소요됨", minute, second);
 	}
 
 	private void hold() {
@@ -105,7 +104,6 @@ public class Stopwatch extends Watch {
 		menu();
 		watchThread = new Thread(watch);
 		watchThread.start();
-
 		log = HOLDNUMBER;
 	}
 
