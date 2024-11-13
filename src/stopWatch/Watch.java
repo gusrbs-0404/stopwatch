@@ -17,14 +17,11 @@ public class Watch implements Runnable {
 		System.out.println(dateInfo + "(" + second + "초)");
 	}
 
-
 	@Override
 	public void run() {
 		while (istimeRun) {
 			second++;
 			printTime();
-
-		
 
 			try {
 				Thread.sleep(1000);
