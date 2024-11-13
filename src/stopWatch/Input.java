@@ -19,33 +19,31 @@ public class Input implements Runnable {
 
 	protected StringBuffer buffer = new StringBuffer();
 
-	protected BufferedWriter writer;
+	protected BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
-	protected BufferedReader reader;
+	protected BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	boolean isInputRun = true;
 
 	@Override
 	public void run() {
-		writer = new BufferedWriter(new OutputStreamWriter(System.out));
-		reader = new BufferedReader(new InputStreamReader(System.in));
+		while (true) {
+			String userInput = input("메뉴입력: ");
+			if (userInput != null) {
+				Stopwatch.getInstance().inputMenu(userInput);
+			}
+		}
 	}
 
-	public void print(String message) {
+	public String input(String message) {
+		String input = "";
 		try {
 			writer.write(message);
 			writer.flush();
+			input = reader.readLine();
 		} catch (Exception e) {
 		}
-	}
-
-	public String input() {
-		String input = "";
-		try {
-			input = reader.readLine(); // 입력 받기
-		} catch (Exception e) {
-		}
-
 		return input;
 	}
+
 }
