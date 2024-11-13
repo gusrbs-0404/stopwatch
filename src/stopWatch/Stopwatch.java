@@ -12,7 +12,7 @@ public class Stopwatch extends Watch {
 
 	private void Stopwatch() {
 
-	}
+	} 
 
 	private static Stopwatch instance = new Stopwatch();
 
