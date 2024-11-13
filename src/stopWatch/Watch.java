@@ -19,6 +19,7 @@ public class Watch implements Runnable {
 
 	@Override
 	public void run() {
+		istimeRun = true;
 		while (istimeRun) {
 			second++;
 			printTime();
