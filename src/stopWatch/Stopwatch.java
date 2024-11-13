@@ -22,8 +22,8 @@ public class Stopwatch extends Watch {
 
 	private Scanner scan = new Scanner(System.in);
 
-	Watch watch = new Watch();
-	Thread watchThread = new Thread(watch);
+	private Watch watch = new Watch();
+	private Thread watchThread = new Thread(watch);
 
 	private boolean isRun = true;
 
