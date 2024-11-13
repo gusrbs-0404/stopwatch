@@ -36,7 +36,6 @@ public class Stopwatch extends Watch {
 		while (isRun) {
 			try {
 				Thread.sleep(1000);
-
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
