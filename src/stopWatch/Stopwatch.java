@@ -1,6 +1,6 @@
 package stopWatch;
 
-public class Stopwatch {
+public class Stopwatch extends Watch {
 
 	private void Stopwatch() {
 
@@ -13,6 +13,17 @@ public class Stopwatch {
 	}
 
 	public void run() {
+		while (true) {
+			second++;
+			printTime();
 
+			try {
+				Thread.sleep(1000);
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 }
