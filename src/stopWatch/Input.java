@@ -23,10 +23,14 @@ public class Input implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			String userInput = input("메뉴입력: ");
-			if (userInput != null) {
-				Stopwatch.getInstance().inputMenu(userInput);
+		while (isInputRun) {
+			try {
+				String userInput = input("메뉴입력: ");
+				if (userInput != null) {
+					Stopwatch.getInstance().inputMenu(userInput);
+				}	
+			} catch (Exception e) {
+				isInputRun = false;
 			}
 		}
 	}
