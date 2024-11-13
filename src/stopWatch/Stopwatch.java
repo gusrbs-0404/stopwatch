@@ -76,15 +76,17 @@ public class Stopwatch extends Watch {
 
 	private void hold() {
 		System.out.println("일시 정지!!");
+		menu();
 		watchThread.interrupt();
 		log = RERUNNUMBER;
 	}
 
 	private void rerun() {
 		System.out.println("다시 시작!!");
-
+		menu();
 		watchThread = new Thread(watch);
 		watchThread.start();
+
 		log = HOLDNUMBER;
 	}
 
