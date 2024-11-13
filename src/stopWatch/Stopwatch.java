@@ -15,10 +15,10 @@ public class Stopwatch extends Watch {
 	}
 
 	private Watch watch = new Watch();
-	private Thread watchThread = new Thread(watch);
+	private Thread watchThread;
 
 	private Input input = new Input();
-	private Thread inputThread = new Thread(input);
+	private Thread inputThread;
 
 	private boolean isRun = true;
 
@@ -27,20 +27,29 @@ public class Stopwatch extends Watch {
 	@Override
 	public void run() {
 		menu();
-		watchThread.start();
-		inputThread.start();
+		startWatchThread();
+		startInputThread();
 
 		while (isRun) {
-			input();
-			inputThread.start();
-			inputMenu();
+			// inputMenu();
 			try {
 				Thread.sleep(1000);
 
 			} catch (InterruptedException e) {
-
+				Thread.currentThread().interrupt();
 			}
 		}
+
+	}
+
+	private void startWatchThread() {
+		watchThread = new Thread(watch);
+		watchThread.start();
+	}
+
+	private void startInputThread() {
+		inputThread = new Thread(input);
+		inputThread.start();
 
 	}
 
@@ -51,17 +60,17 @@ public class Stopwatch extends Watch {
 		System.out.println("[e] RERUN");
 	}
 
-	private void inputMenu() {
+	private void inputMenu(String Input) {
 
-		if (qwe.equals(STOP)) {
+		if (Input.equals(STOP)) {
 			stop();
-		} else if (qwe.equals(HOLD)) {
+		} else if (Input.equals(HOLD)) {
 			if (log == HOLDNUMBER) {
 				hold();
 			} else {
 				System.out.println("이미 일시정지 상태 입니다!");
 			}
-		} else if (qwe.equals(RERUN)) {
+		} else if (Input.equals(RERUN)) {
 			if (log == RERUNNUMBER) {
 				rerun();
 			} else {
