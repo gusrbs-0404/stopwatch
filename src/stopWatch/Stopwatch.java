@@ -23,10 +23,14 @@ public class Stopwatch extends Watch {
 	Watch watch = new Watch();
 	Thread watchThread = new Thread(watch);
 
+	private boolean isRun = true;
+
 	@Override
 	public void run() {
-
-		watchThread.start();
+		menu();
+		while (isRun) {
+			inputMenu();
+		}
 
 	}
 
@@ -35,6 +39,9 @@ public class Stopwatch extends Watch {
 		System.out.println("[w] HOLD");
 		System.out.println("[e] RERUN");
 
+	}
+
+	private void inputMenu() {
 		String select = input("메뉴 입력");
 
 		if (select.equals(STOP)) {
